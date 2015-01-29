@@ -1,0 +1,58 @@
+// Цвета
+@neon-green: #6FFF00;
+@neon-pink: #FF00FF; // #ff00de тоже неплохо работает
+@neon-yellow: #FFFF00;
+@neon-blue: #4D4DFF;
+@neon-red: #FE0001;
+@neon-orange: #FF4105;
+@neon-purple: #993CF3;
+
+
+.neon {
+    font-size: 16em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-pink, 0 0 70px @neon-pink, 0 0 80px @neon-pink, 0 0 100px @neon-pink, 0 0 150px @neon-pink;
+    
+    &.pink {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-pink, 0 0 70px @neon-pink, 0 0 80px @neon-pink, 0 0 100px @neon-pink, 0 0 150px @neon-pink;
+    }
+    
+    &.green {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-green, 0 0 70px @neon-green, 0 0 80px @neon-green, 0 0 100px @neon-green, 0 0 150px @neon-green;
+    }
+    
+    &.yellow {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-yellow, 0 0 70px @neon-yellow, 0 0 80px @neon-yellow, 0 0 100px @neon-yellow, 0 0 150px @neon-yellow;
+    }
+    
+    &.blue {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-blue, 0 0 70px @neon-blue, 0 0 80px @neon-blue, 0 0 100px @neon-blue, 0 0 150px @neon-blue;
+    }
+    
+    &.red {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-red, 0 0 70px @neon-red, 0 0 80px @neon-red, 0 0 100px @neon-red, 0 0 150px @neon-red;
+    }
+    
+    &.orange {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-orange, 0 0 70px @neon-orange, 0 0 80px @neon-orange, 0 0 100px @neon-orange, 0 0 150px @neon-orange;
+    }
+    
+    &.purple {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-purple, 0 0 70px @neon-purple, 0 0 80px @neon-purple, 0 0 100px @neon-purple, 0 0 150px @neon-purple;
+    }
+}
+
+/* Тоже может пригодиться, но потом 
+a.glow, a.glow:hover, a.glow:focus
+{
+	text-decoration: none;
+	color: #aaf;
+	text-shadow: none;
+	-webkit-transition: 500ms linear 0s;
+	-moz-transition: 500ms linear 0s;
+	-o-transition: 500ms linear 0s;
+	transition: 500ms linear 0s;
+	outline: 0 none;
+}
+*/
