@@ -1,0 +1,48 @@
+.main-menu {
+    width: 100%;
+    margin: 0 auto 1em;
+    
+    
+    ul {
+        text-align: center;
+        
+        margin: 0
+        padding: 0;
+        
+        list-style-type: none;
+        
+        li {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            
+            margin-left: 2em;
+            
+            &:first-child {
+                margin-left: 0;
+            }
+            
+            a {
+                font-size: 1.4em;
+                background-color: @text-color;
+                text-decoration: none;
+                
+                background-clip: text;
+                color: transparent;
+                text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+                
+                &:hover {
+                    color: transparent;
+                    background-color: darken(@text-color, 15%);
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+@media @desktop {
+    .main-menu {
+        width: @container-desktop;
+    }
+}

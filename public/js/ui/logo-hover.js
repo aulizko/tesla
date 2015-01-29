@@ -22,6 +22,9 @@ module.exports = {
                 $body.removeClass(currentNeonColor).addClass(newNeonColor);
                 block = false;
             });
+            
+            e.preventDefault();
+            return false;
         });
     }
 };

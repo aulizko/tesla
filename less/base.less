@@ -1,21 +1,21 @@
-@body-background: #999999;
-@text-color:      #525252;
-
 * {
   margin: 0;
 }
+
 html, body {
   height: 100%;
 }
 
-@footerHeight: 160px;
+body {
+    color: @text-color;
+}
 
 .all-content-wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -@footerHeight;
+  margin: 0 auto -@footer-height;
 }
 #footer, .all-content-push {
-  height: @footerHeight;
+  height: @footer-height;
 }
