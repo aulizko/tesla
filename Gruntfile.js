@@ -51,10 +51,11 @@ module.exports = function (grunt) {
                     transform: ['ractivate', "browserify-shim"],
                     exclude: 'views/layouts/**/*.html',
                     debug: true,
-                    watch: true
+                    watch: true,
+                    ignore: ['public/js/master.js']
                 },
                 files: {
-                    'public/js/master.js': ['!public/js/master.js', 'public/js/**/*.js', 'views/**/*.html']
+                    'public/js/master.js': ['public/js/**/*.js', 'views/**/*.html']
                 }
             }
         },
