@@ -1,0 +1,9 @@
+{
+  "name": "region",
+  "version": "0.0.1",
+  "dependencies": {
+    "medium-editor": "~1.9.8",
+    "jquery": "1.x",
+    "salvattore": "1.0.7"
+  }
+}

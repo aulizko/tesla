@@ -12,6 +12,8 @@ lib-cov
 coverage
 .grunt
 upload
-public/vendor/*
 tmp
 bower_components
+css
+vendor
+js/master.js
