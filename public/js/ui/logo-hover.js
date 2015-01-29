@@ -2,25 +2,24 @@ var $ = require('jquery');
 var _ = require('lodash');
 var classList = ['green', 'pink', 'yellow', 'blue', 'red', 'orange', 'purple'];
 var $body = $('body');
-var block = false;
+var lock = false;
 
 module.exports = {
     init: function () {
         $('.logo').click(function (e) {
-            if (block) {
+            if (lock) {
                 return;
             }
             
             var classes = $body[0].className.split(' ');
             var currentNeonColor = _.intersection(classes, classList)[0];
-            console.log(currentNeonColor);
             var newNeonColor = _.sample(_.without(classList, currentNeonColor));
-            console.log(newNeonColor);
-            block = true;
+
+            lock = true;
             
             requestAnimationFrame(function () {
                 $body.removeClass(currentNeonColor).addClass(newNeonColor);
-                block = false;
+                lock = false;
             });
             
             e.preventDefault();

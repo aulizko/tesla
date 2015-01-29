@@ -3,15 +3,13 @@
 }
 
 .neon-radial(@start-color, @end-color) {
-    background: radial-gradient(ellipse at top center, lighten(@start-color, 30%) 0%, @body-background 100%);
+    background: radial-gradient(ellipse at top center, lighten(@start-color, 30%) 0%, @end-color 100%);
     background-color: @end-color;
     background-repeat: no-repeat;
     background-attachment: fixed; 
 }
 
 .neon-background {
-    
-    
     &.pink {
         .neon-radial(@neon-pink, @body-background);
         
@@ -30,7 +28,6 @@
     
     &.yellow {
         .neon-radial(@neon-yellow, @body-background);
-        
         .neon {
             .neon-shadow(@neon-yellow);
         }
