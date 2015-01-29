@@ -1,9 +1,9 @@
 .idea
 node_modules
 .DS_Store
-public/css/core.css
-public/css/core.css.map
-public/core.js
+public/css/master.css
+public/css/master.css.map
+public/js/master.js
 config/env/env.json
 *.log
 *.pid
@@ -16,4 +16,3 @@ tmp
 bower_components
 css
 vendor
-js/master.js

@@ -7,40 +7,12 @@
 @neon-orange: #FF4105;
 @neon-purple: #993CF3;
 
+.neon-shadow(@color) {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @color, 0 0 70px @color, 0 0 80px @color, 0 0 100px @color, 0 0 150px @color;
+}
 
 .neon {
-    font-size: 16em;
-    text-transform: uppercase;
     color: #fff;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-pink, 0 0 70px @neon-pink, 0 0 80px @neon-pink, 0 0 100px @neon-pink, 0 0 150px @neon-pink;
-    
-    &.pink {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-pink, 0 0 70px @neon-pink, 0 0 80px @neon-pink, 0 0 100px @neon-pink, 0 0 150px @neon-pink;
-    }
-    
-    &.green {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-green, 0 0 70px @neon-green, 0 0 80px @neon-green, 0 0 100px @neon-green, 0 0 150px @neon-green;
-    }
-    
-    &.yellow {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-yellow, 0 0 70px @neon-yellow, 0 0 80px @neon-yellow, 0 0 100px @neon-yellow, 0 0 150px @neon-yellow;
-    }
-    
-    &.blue {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-blue, 0 0 70px @neon-blue, 0 0 80px @neon-blue, 0 0 100px @neon-blue, 0 0 150px @neon-blue;
-    }
-    
-    &.red {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-red, 0 0 70px @neon-red, 0 0 80px @neon-red, 0 0 100px @neon-red, 0 0 150px @neon-red;
-    }
-    
-    &.orange {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-orange, 0 0 70px @neon-orange, 0 0 80px @neon-orange, 0 0 100px @neon-orange, 0 0 150px @neon-orange;
-    }
-    
-    &.purple {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @neon-purple, 0 0 70px @neon-purple, 0 0 80px @neon-purple, 0 0 100px @neon-purple, 0 0 150px @neon-purple;
-    }
 }
 
 /* Тоже может пригодиться, но потом 
@@ -56,3 +28,66 @@ a.glow, a.glow:hover, a.glow:focus
 	outline: 0 none;
 }
 */
+
+.neon-radial(@start-color, @end-color) {
+    background: @end-color;
+    background: radial-gradient(ellipse at top center, lighten(@start-color, 30%) 0%, @body-background 100%);
+}
+
+.neon-background {
+    &.pink {
+        .neon-radial(@neon-pink, @body-background);
+        
+        .neon {
+            .neon-shadow(@neon-pink);
+        }
+    }
+    
+    &.green {
+        .neon-radial(@neon-green, @body-background);
+        
+        .neon {
+            .neon-shadow(@neon-green);
+        }
+    }
+    
+    &.yellow {
+        .neon-radial(@neon-yellow, @body-background);
+        
+        .neon {
+            .neon-shadow(@neon-yellow);
+        }
+    }
+    
+    &.blue {
+        .neon-radial(@neon-blue, @body-background);
+        
+        .neon {
+            .neon-shadow(@neon-blue);
+        }
+    }
+    
+    &.red {
+        .neon-radial(@neon-red, @body-background);
+        
+        .neon {
+            .neon-shadow(@neon-red);
+        }
+    }
+    
+    &.orange {
+        .neon-radial(@neon-orange, @body-background);
+        
+        .neon {
+            .neon-shadow(@neon-orange);
+        }
+    }
+    
+    &.purple {
+        .neon-radial(@neon-purple, @body-background);
+        
+        .neon {
+            .neon-shadow(@neon-purple);
+        }
+    }
+}

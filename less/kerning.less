@@ -1,0 +1,26 @@
+/**
+ * From https://github.com/suitcss/utils-text/blob/master/lib/text.css
+ */
+/**
+ * Enables font kerning in all browsers.
+ * http://blog.typekit.com/2014/02/05/kerning-on-the-web/
+ *
+ * 1. Chrome (not Windows), Firefox, Safari 6+, iOS, Android
+ * 2. Chrome (not Windows), Firefox, IE 10+
+ * 3. Safari 7 and future browsers
+ */
+.text-kerning() {
+  text-rendering: optimizeLegibility; /* 1 */
+  font-feature-settings: "kern" 1; /* 2 */
+  font-kerning: normal;/* 3 */
+}
+
+h1, h2, h3, h4, h5, h6,
+p,
+small,
+li,
+dt,
+dd,
+blockquote {
+  .text-kerning();
+}

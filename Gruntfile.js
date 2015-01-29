@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         less: {
             core: {
                 files: {
-                    "css/master.css": "less/master.less"
+                    "public/css/master.css": "less/master.less"
                 }
             }
         },
@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                 options: {
                     map: true
                 },
-                src: 'css/master.css'
+                src: 'public/css/master.css'
             }
         },
         bower : {
@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                     watch: true
                 },
                 files: {
-                    'js/master.js': ['!js/master.js', 'js/**/*.js', 'views/**/*.html']
+                    'public/js/master.js': ['!public/js/master.js', 'public/js/**/*.js', 'views/**/*.html']
                 }
             }
         },
