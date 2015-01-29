@@ -24,4 +24,10 @@ npm i
 grunt dist
 ```
 
+Запускаем локальный сервер:
+
+```
+node demo-server.js
+```
+
 Запускаем в браузере адрес ```http://localhost:3000/```.
