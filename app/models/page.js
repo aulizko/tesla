@@ -86,7 +86,7 @@ PageSchema.path('slug').validate(function (slug, fn) {
     }
 }, 'Страница с таким slug уже существует');
 
-PageSchema.path('slug').validate(function(slug, fn) {
+PageSchema.path('slug').validate(function (slug, fn) {
     // Check only when it is a new user or when email field is modified
     if (this.isNew || this.isModified('slug')) {
         fn(!reservedSlugsRegex.test(slug));
@@ -209,15 +209,15 @@ PageSchema.statics = {
 
         this.find(criteria)
             .populate('user', 'name username')
-            .sort({'createdAt': -1}) // sort by date
+            .sort({createdAt: -1}) // sort by date
             .limit(options.perPage)
             .skip(options.perPage * options.page)
             .exec(cb);
     },
 
-    all: function(cb) {
+    all: function (cb) {
         this.find({})
-            .sort({'slug': 1}) // сортируем по slug
+            .sort({slug: 1}) // сортируем по slug
             .exec(cb);
     }
 };

@@ -15,7 +15,7 @@ function login(req, res) {
 
 exports.load = function (req, res, next, id) {
     var options = {
-        criteria: { _id: id }
+        criteria: {_id: id}
     };
     User.load(options, function (err, user) {
         if (err) {

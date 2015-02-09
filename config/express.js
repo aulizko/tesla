@@ -55,11 +55,11 @@ module.exports = function (app, passport) {
     // view engine setup
     require('viewEngine')(app);
 
-
-
     // bodyParser should be above methodOverride
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
     app.use(multer());
     app.use(methodOverride(function (req) {
         if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -72,7 +72,9 @@ module.exports = function (app, passport) {
 
     // CookieParser should be above session
     app.use(cookieParser());
-    app.use(cookieSession({ secret: 'secret' }));
+    app.use(cookieSession({
+        secret: 'secret'
+    }));
     app.use(session({
         resave: true,
         saveUninitialized: true,
@@ -87,9 +89,8 @@ module.exports = function (app, passport) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-
     // expose user to views
-    app.use(function(req, res, next){
+    app.use(function (req, res, next) {
         res.locals.user = req.user;
         res.locals.authenticated = req.isAuthenticated();
         next();

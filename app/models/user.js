@@ -108,11 +108,9 @@ UserSchema.path('hashedPassword').validate(function (hashedPassword) {
     return hashedPassword.length;
 }, 'Пароль не должен быть пустым');
 
-
 /**
  * Pre-save hook
  */
-
 UserSchema.pre('save', function (next) {
     if (!this.isNew) {
         return next();
@@ -128,7 +126,6 @@ UserSchema.pre('save', function (next) {
 /**
  * Methods
  */
-
 UserSchema.methods = {
 
     /**
@@ -149,7 +146,7 @@ UserSchema.methods = {
      * @api public
      */
     makeSalt: function () {
-        return Math.round((new Date().valueOf() * Math.random())) + '';
+        return String.valueOf(Math.round((new Date().valueOf() * Math.random())));
     },
 
     /**
@@ -178,7 +175,7 @@ UserSchema.methods = {
      * Validation is not required if using OAuth
      */
     skipValidation: function () {
-        return ~oAuthTypes.indexOf(this.provider);
+        return oAuthTypes.indexOf(this.provider) !== -1;
     }
 };
 
@@ -202,7 +199,7 @@ UserSchema.statics = {
             .exec(cb);
     },
 
-    all: function(cb) {
+    all: function (cb) {
         this.find({})
             .sort({_id: 1}) // сортируем по id
             .exec(cb);

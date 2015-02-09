@@ -10,12 +10,16 @@ var local = require('./passport/local');
  */
 module.exports = function (passport) {
   // serialize sessions
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser(function (user, done) {
       done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
-      User.load({ criteria: { _id: id } }, function (err, user) {
+  passport.deserializeUser(function (id, done) {
+      User.load({
+          criteria: {
+              _id: id
+          }
+      }, function (err, user) {
           done(err, user);
       });
   });

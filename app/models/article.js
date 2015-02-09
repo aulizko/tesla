@@ -61,7 +61,7 @@ ArticleSchema.pre('remove', function (next) {
     next();
 });
 
-ArticleSchema.pre('validate', function(next) {
+ArticleSchema.pre('validate', function (next) {
     this.body = sanitizeHtml(this.body, {
         allowedTags: sanitizeHtml.defaults.allowedTags,
         allowedAttributes: sanitizeHtml.defaults.allowedAttributes
@@ -69,11 +69,9 @@ ArticleSchema.pre('validate', function(next) {
     next();
 });
 
-//noinspection JSUnusedGlobalSymbols
 /**
  * Methods
  */
-
 ArticleSchema.methods = {
 
     /**
@@ -102,14 +100,17 @@ ArticleSchema.methods = {
                 }
 
                 if (files.length) {
-                    self.image = { cdnUri: cdnUri, files: files };
+                    self.image = {
+                        cdnUri: cdnUri,
+                        files: files
+                    };
                 }
                 self.save(cb);
             }, 'article');
         });
     },
 
-    truncate: function(text, limit) {
+    truncate: function (text, limit) {
         var chunk = _.unescape(sanitizeHtml(text, {allowedTags: [], allowedAttributes: false})).replace('&nbsp;', '');
         limit = limit || 300;
 
@@ -139,7 +140,9 @@ ArticleSchema.statics = {
      */
 
     load: function (id, cb) {
-        this.findOne({ _id: id })
+        this.findOne({
+                _id: id
+            })
             .populate('user', 'name email username')
             .exec(cb);
     },
@@ -157,13 +160,13 @@ ArticleSchema.statics = {
 
         this.find(criteria)
             .populate('user', 'name username')
-            .sort({'createdAt': -1}) // сортируем по дате
+            .sort({createdAt: -1}) // сортируем по дате
             .limit(options.perPage)
             .skip(options.perPage * options.page)
             .exec(cb);
     },
 
-    search: function(text, cb) {
+    search: function (text, cb) {
         var criteria = {
             $text: {
                 $search: text
@@ -179,9 +182,9 @@ ArticleSchema.statics = {
         this.find(criteria, score).populate('user', 'name username').sort(score).exec(cb);
     },
 
-    all: function(cb) {
+    all: function (cb) {
         this.find({})
-            .sort({'createdAt': -1}) // сортируем по дате
+            .sort({createdAt: -1}) // сортируем по дате
             .exec(cb);
     }
 };

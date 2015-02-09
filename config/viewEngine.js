@@ -8,8 +8,6 @@ var config = require('config');
 var RactiveViewEngine = require('../lib/RactiveViewEngine');
 var _ = require('lodash');
 
-
-
 module.exports = function (app) {
     var ractiveViewEngine = new RactiveViewEngine({
         defaultLayout: 'layout-default',
@@ -32,9 +30,10 @@ module.exports = function (app) {
                 if (!pageCount || pageCount <= 1) {
                     return '';
                 }
-                var result = '<div class="paginator__wrapper"><div class="paginator"><div class="paginator__header">Страницы: </div><ul>';
+                var result = '<div class="paginator__wrapper">' +
+                    '<div class="paginator"><div class="paginator__header">Страницы: </div><ul>';
 
-                var links = _.map(_.range(1, pageCount + 1 > 10 ? 11 : pageCount + 1), function(page) {
+                var links = _.map(_.range(1, pageCount + 1 > 10 ? 11 : pageCount + 1), function (page) {
                     var linkHtml = '<li class="page';
                     if (page === currentPage) {
                         linkHtml += ' active';
@@ -52,7 +51,7 @@ module.exports = function (app) {
                 return result;
             },
 
-            getProfilePictureUrl: function(user) {
+            getProfilePictureUrl: function (user) {
                 if (user.email) {
                     return gravatar.url(user.email, {s: '64', r: 'g', d: 'mm'});
                 } else {

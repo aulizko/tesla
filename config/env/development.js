@@ -23,6 +23,6 @@ if (fs.existsSync(envFile)) {
 
 module.exports = {
     db: 'mongodb://localhost/tesla',
-    'SITE_TITLE': 'Tesla',
+    SITE_TITLE: 'Tesla',
     siteDomain: 'localhost:3000'
 };

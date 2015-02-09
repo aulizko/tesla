@@ -8,7 +8,7 @@ var Article = mongoose.model('Article');
 var User = mongoose.model('User');
 var Page = mongoose.model('Page');
 
-module.exports = function(app, config) {
+module.exports = function (app, config) {
     var frequency = {
         ALWAYS: 'always',
         HOURLY: 'hourly',
@@ -18,7 +18,6 @@ module.exports = function(app, config) {
         YEARLY: 'yearly',
         NEVER: 'never'
     };
-
 
     var sitemap = SiteMap.createSitemap({
         hostname: 'http://' + config.siteDomain,
@@ -42,28 +41,28 @@ module.exports = function(app, config) {
         ]
     });
 
-    Article.all(function(err, articles) {
+    Article.all(function (err, articles) {
         if (err) {
             throw err;
         }
 
         var tags = [];
 
-        _.each(articles, function(article) {
+        _.each(articles, function (article) {
             sitemap.add({
                 url: '/articles/' + article._id,
                 changefreq: frequency.MONTHLY,
                 priority: 0.3
             });
 
-            var tagsArray = _.map(article.tags.split(','), function(item) {
+            var tagsArray = _.map(article.tags.split(','), function (item) {
                 return item.trim();
             });
 
             tags.push(tagsArray);
         });
 
-        _.each(_.uniq(_.flatten(tags)), function(tag) {
+        _.each(_.uniq(_.flatten(tags)), function (tag) {
             sitemap.add({
                 url: '/tags/' + tag,
                 changefreq: frequency.MONTHLY,
@@ -72,12 +71,12 @@ module.exports = function(app, config) {
         });
     });
 
-    User.all(function(err, users) {
+    User.all(function (err, users) {
         if (err) {
             throw err;
         }
 
-        _.each(users, function(user) {
+        _.each(users, function (user) {
             sitemap.add({
                 url: '/users/' + user._id,
                 changefreq: frequency.YEARLY,
@@ -86,12 +85,12 @@ module.exports = function(app, config) {
         });
     });
 
-    Page.all(function(err, pages) {
+    Page.all(function (err, pages) {
         if (err) {
             throw err;
         }
 
-        _.each(pages, function(page) {
+        _.each(pages, function (page) {
             sitemap.add({
                 url: '/' + page.slug,
                 changefreq: frequency.YEARLY,
@@ -100,10 +99,10 @@ module.exports = function(app, config) {
         });
     });
 
-    return function(req, res) {
-        sitemap.toXML( function (xml) {
+    return function (req, res) {
+        sitemap.toXML(function (xml) {
             res.header('Content-Type', 'application/xml');
-            res.send( xml );
+            res.send(xml);
         });
     };
 };
