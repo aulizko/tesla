@@ -1,0 +1,104 @@
+{{#if page.isNew}}
+<h1 class="page-header">Добавление страницы</h1>
+{{else}}
+<h1 class="page-header">Редактирование страницы {{page.title}}</h1>
+{{/if}}
+
+{{#if errors && errors.length}}
+<div class="alert alert-danger">
+    <p><strong>При заполнении формы были допущены следующие ошибки:</strong></p>
+    <ol>
+    {{#each errors}}
+        <li>{{.}}</li>
+    {{/each}}
+    </ol>
+</div>
+{{/if}}
+
+{{#with page}}
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" action="{{ isNew ? '/pages' : '/pages/' + _id }}" enctype="multipart/form-data"
+              role="form" class="form-horizontal" id="page-form">
+
+            <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+            {{#unless isNew}}
+            <input type="hidden" name="_method" value="PUT">
+            {{/unless}}
+
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">Название</label>
+
+                <div class="col-sm-10">
+                    <input type="text" name="title" value="{{ title }}" placeholder="Введите название"
+                           class="form-control" id="title">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="file" class="col-sm-2 control-label">Картинка</label>
+
+                <div class="col-sm-10">
+                    <input type="file" name="image" class="form-control" id="file">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="video" class="col-sm-2 control-label">Видео</label>
+
+                <div class="col-sm-10">
+                    <input type="text" name="video" value="{{ video }}" placeholder="Укажите ссылку на видео"
+                           class="form-control" id="video">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="desc" class="col-sm-2 control-label">Текст</label>
+
+                <div class="col-sm-10">
+                    <div id="desc" class="form-control__medium-editor">
+                        {{{body}}}
+                    </div>
+                    <textarea rows="5" name="body" placeholder="Введите текст" id="desc_content" cols="30" rows="10"
+                              class="hide">{{{ body }}}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="slug" class="col-sm-2 control-label">Slug</label>
+
+                <div class="col-sm-10">
+                    <input type="text" name="slug" value="{{ slug }}" placeholder="Введите slug"
+                           class="form-control" id="slug">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="published" value="true" checked="{{published}}">
+                            Опубликовано
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-primary" type="submit">Сохранить</button>
+                    &nbsp;
+                    <a href="/" class="btn btn-link">Отмена</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        {{#if (!isNew && image && image.files && image.files.length) }}
+        <img src="/upload/thumbnail_large_{{image.files[0] }}" alt="{{title}}">
+        {{/if}}
+    </div>
+</div>
+{{/with}}

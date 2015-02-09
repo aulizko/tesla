@@ -1,0 +1,8 @@
+<picture>
+    <!--[if IE 9]><video style="display: none;"><![endif]-->
+    <source srcset="/upload/thumbnail_large_{{image.files[0]}}" media="(min-width: 1200px)">
+    <source srcset="/upload/thumbnail_medium_{{image.files[0]}}" media="(min-width: 992px)">
+    <source srcset="/upload/thumbnail_small_{{image.files[0]}}" media="(min-width: 768px)">
+    <!--[if IE 9]></video><![endif]-->
+    <img srcset="/upload/thumbnail_extra_small_{{image.files[0]}}" alt="{{title}}">
+</picture>
