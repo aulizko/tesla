@@ -1,8 +1,8 @@
 .idea
 node_modules
 .DS_Store
-public/css/master.css
-public/css/master.css.map
+public/css
+public/dist
 public/js/master.js
 config/env/env.json
 *.log
