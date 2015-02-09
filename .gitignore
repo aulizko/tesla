@@ -2,7 +2,7 @@
 node_modules
 .DS_Store
 public/css
-public/dist
+public/dist/*
 public/js/master.js
 config/env/env.json
 *.log
