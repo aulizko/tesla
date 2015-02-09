@@ -1,3 +1,5 @@
+<h1>Регистрация</h1>
+
 {{#if errors && errors.length}}
 <div class="alert alert-danger">
     <p><strong>При заполнении формы были допущены следующие ошибки:</strong></p>
@@ -10,12 +12,12 @@
 {{/if}}
 
 <form action="/users" method="post" role="form" class="form-horizontal">
-    <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Полное имя</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <input id="name" class="form-control" type="text" name="name" placeholder="Full name"
                    value="{{ user.name }}">
         </div>
@@ -24,7 +26,7 @@
     <div class="form-group">
         <label for="email" class="col-sm-2 control-label">Email</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <input type="text" name="email" placeholder="Email" value="{{ user.email }}" id="email"
                    class="form-control">
         </div>
@@ -33,7 +35,7 @@
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">Имя пользователя</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <input id="username" class="form-control" type="text" name="username" placeholder="Username"
                    value="{{ user.username }}">
         </div>
@@ -42,13 +44,13 @@
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">Пароль</label>
 
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <input id="password" class="form-control" type="password" name="password" placeholder="Password">
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-2 col-sm-8">
             <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
             &nbsp; или &nbsp;
             <a href="/login" class="show-login">Войти</a>

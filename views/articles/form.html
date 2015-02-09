@@ -21,7 +21,7 @@
         <form method="post" action="{{ isNew ? '/articles' : '/articles/' + _id }}" enctype="multipart/form-data"
               role="form" class="form-horizontal" id="article-form">
 
-            <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
 
             {{#unless isNew}}
             <input type="hidden" name="_method" value="PUT">
@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="title" class="col-sm-2 control-label">Название</label>
 
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                     <input type="text" name="title" value="{{ title }}" placeholder="Введите название"
                            class="form-control" id="title">
                 </div>
@@ -39,52 +39,34 @@
             <div class="form-group">
                 <label for="file" class="col-sm-2 control-label">Картинка</label>
 
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                     <input type="file" name="image" class="form-control" id="file">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="videoUrl" class="col-sm-2 control-label">Видео</label>
-
-                <div class="col-sm-10">
-                    <input type="text" name="videoUrl" value="{{ videoUrl }}" placeholder="Укажите ссылку на видео"
-                           class="form-control" id="videoUrl">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="desc" class="col-sm-2 control-label">Текст</label>
 
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                     <div id="desc" class="form-control__medium-editor">
                         {{{body}}}
                     </div>
                     <textarea rows="5" name="body" placeholder="Введите текст" id="desc_content" cols="30" rows="10"
-                              class="hide">{{{ body }}}</textarea>
+                              class="hidden">{{{ body }}}</textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="source" class="col-sm-2 control-label">Источник</label>
 
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                     <input type="text" name="source" value="{{ source }}" placeholder="Укажите ссылку"
                            class="form-control" id="source">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="tags" class="col-sm-2 control-label">Тэги</label>
-
-                <div class="col-sm-10">
-                    <input type="text" name="tags" value="{{ tags }}" placeholder="Введите тэги, через запятую"
-                           class="form-control" id="tags">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-sm-offset-2 col-sm-8">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="published" value="true" checked="{{published}}">
@@ -96,7 +78,7 @@
 
 
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-sm-offset-2 col-sm-8">
                     <button class="btn btn-primary" type="submit">Сохранить</button>
                     &nbsp;
                     <a href="/articles" class="btn btn-link">Отмена</a>
@@ -104,9 +86,9 @@
             </div>
         </form>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         {{#if (!isNew && image && image.files && image.files.length) }}
-        <img src="/upload/thumbnail_large_{{image.files[0] }}" alt="{{title}}">
+        <img src="/upload/thumbnailLarge_{{image.files[0] }}" alt="{{title}}">
         {{/if}}
     </div>
 </div>

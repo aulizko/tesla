@@ -3,10 +3,11 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var jscs = require('gulp-jscs');
-var browserify = require('gulp-browserify');
+var browserify = require('gulp-browserify2');
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
 var bower = require('gulp-bower');
+var debug = require('gulp-debug');
 
 var LINT_SOURCES = [
     'public/js/**/*.js',
@@ -30,6 +31,9 @@ gulp.task('styles', function () {
         .pipe(less({
             strictImports: true
         }))
+        .on( "error", function( err ) {
+            console.log(err);
+          })
         .pipe(autoprefixer({
             browsers: [
                 'android 2.3',
@@ -47,10 +51,13 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', ['lint', 'codeStyle'], function () {
     // Single entry point to browserify 
-    gulp.src(['./public/js/main.js'])
+    gulp.src('./public/js/main.js')
         .pipe(browserify({
-            insertGlobals : true,
-            debug : !gulp.env.production
+            fileName: 'master.js',
+            options: {
+                insertGlobals : true,
+                debug : true
+            }
         }))
         .pipe(gulp.dest('./public/dist/'))
 });

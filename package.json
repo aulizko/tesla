@@ -14,7 +14,7 @@
     "start": "./node_modules/.bin/nodemon server.js",
     "test": "NODE_PATH=./config:./app/controllers NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --timeout 10000 test/test-*.js"
   },
-  "dependencies": {w
+  "dependencies": {
     "URIjs": "^1.14.1",
     "bluebird": "2.3.10",
     "body-parser": "~1.8.1",
@@ -53,7 +53,8 @@
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-bower": "0.0.10",
-    "gulp-browserify": "^0.5.1",
+    "gulp-browserify2": "0.0.2",
+    "gulp-debug": "^2.0.0",
     "gulp-eslint": "^0.4.0",
     "gulp-jscs": "^1.4.0",
     "gulp-less": "^2.0.1",
@@ -64,9 +65,9 @@
     "supertest": "0.14.0"
   },
   "browser": {
-    "medium-editor": "./vendor/medium-editor/medium-editor.js",
+    "medium-editor": "./vendor/medium-editor/dist/js/medium-editor.js",
     "lodash": "./node_modules/lodash/dist/lodash.compat.js",
-    "jquery": "./vendor/jquery/jquery.js",
+    "jquery": "./vendor/jquery/dist/jquery.js",
     "ractive": "./node_modules/ractive/ractive-legacy.runtime.js"
   },
   "browserify-shim": "./browser-shims.js",

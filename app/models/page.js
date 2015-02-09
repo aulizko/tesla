@@ -51,15 +51,6 @@ var PageSchema = new Schema({
         cdnUri: String,
         files: []
     },
-    video: {
-        type: String,
-        default: '',
-        trim: true
-    },
-    videoThumbnail: {
-        type: String,
-        default: ''
-    },
     published: {
         type: Boolean,
         default: false
