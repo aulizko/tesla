@@ -52,7 +52,8 @@ exports.index = function (req, res) {
             res.render('articles/index', {
                 articles: articles,
                 page: page + 1,
-                pages: Math.ceil(count / perPage)
+                pages: Math.ceil(count / perPage),
+                pageColor: 'yellow'
             });
         });
     });
