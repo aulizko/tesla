@@ -1,4 +1,16 @@
-<h1>Центр управления</h1>
+<h1 class="page-header">Центр управления</h1>
+
+{{#if errors && errors.length}}
+<div class="alert alert-danger">
+    <p><strong>При заполнении формы были допущены следующие ошибки:</strong></p>
+    <ol>
+        {{#each errors}}
+        <li>{{.}}</li>
+        {{/each}}
+    </ol>
+</div>
+{{/if}}
+
 
 <form action="/users/session" method="post" role="form" class="form-horizontal">
     <input type="hidden" name="_csrf" value="{{ csrfToken }}">

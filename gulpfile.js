@@ -23,7 +23,7 @@ var LINT_SOURCES = [
 gulp.task('dev', function () {
     nodemon({
         script: 'server.js',
-        ext: 'html js json',
+        ext: 'js json',
         ignore: [
             "test/*",
             "upload/*",

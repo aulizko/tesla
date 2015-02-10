@@ -57,6 +57,24 @@ module.exports = function (app) {
                 } else {
                     return '';
                 }
+            },
+
+            colorizePage: function (colorName) {
+                if (colorName) {
+                    return colorName;
+                } else {
+                    var colorsList = [
+                        'green',
+                        'pink',
+                        'yellow',
+                        'blue',
+                        'red',
+                        'orange',
+                        'purple'
+                    ];
+
+                    return _.sample(colorsList);
+                }
             }
         }
     });

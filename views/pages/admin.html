@@ -1,4 +1,4 @@
-<h1 class="page-header">Список страниц</h1>
+<h1 class="page-header">Список страниц <a href="/pages/new" class="admin-table__action-add-new glyphicon glyphicon-plus"></a></h1>
 
 <table class="table">
     <thead>
@@ -6,7 +6,7 @@
         <th>#</th>
         <th>Заголовок</th>
         <th>Slug</th>
-        <th></th>
+        <th class="admin-table__actions-cell"></th>
     </tr>
     </thead>
     <tbody>
@@ -15,10 +15,10 @@
         <td>{{i + 1}}</td>
         <td>{{title}}</td>
         <td>{{slug}}</td>
-        <td>
+        <td class="admin-table__actions-cell">
             <a href="/{{slug}}" class="admin-table__action glyphicon glyphicon-eye-open"></a>
-            <a href="/pages/{{_id}}/edit" class="admin-table__action glyphicon-pencil"></a>
-            <a href="/pages/{{_id}}" class="admin-table__action glyphicon-trash" data-action="delete-item"></a>
+            <a href="/pages/{{_id}}/edit" class="admin-table__action glyphicon glyphicon-pencil"></a>
+            <a href="/pages/{{_id}}" class="admin-table__action glyphicon glyphicon-trash" data-action="delete-item"></a>
         </td>
     </tr>
     {{/entries}}
