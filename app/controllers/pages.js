@@ -47,7 +47,7 @@ exports.loadById = function (req, res, next, id) {
  * List
  */
 
-exports.index = function (req, res) {
+exports.admin = function (req, res) {
     var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
     var perPage = 30;
     var options = {
@@ -65,10 +65,11 @@ exports.index = function (req, res) {
                 return res.render('500');
             }
 
-            res.render('pages/index', {
-                articles: articles,
+            res.render('pages/admin', {
+                entries: articles,
                 page: page + 1,
-                pages: Math.ceil(count / perPage)
+                pages: Math.ceil(count / perPage),
+                layout: 'admin'
             });
         });
     });

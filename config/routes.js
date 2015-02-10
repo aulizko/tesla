@@ -53,9 +53,9 @@ module.exports = function (app, passport, sitemap) {
     // page routes
     app.param('slug', pages.loadBySlug);
     app.param('pageId', pages.loadById);
+    app.get('/admin/pages', auth.requiresLogin, pages.admin);
     app.get('/pages/new', auth.requiresLogin, pages.new);
     app.post('/pages', auth.requiresLogin, pages.create);
-    app.get('/pages/page/:page', auth.requiresLogin, pages.index);
     app.get('/pages/:pageId/edit', pageAuth, pages.edit);
     app.put('/pages/:pageId', pageAuth, pages.update);
     app.delete('/pages/:pageId', pageAuth, pages.destroy);

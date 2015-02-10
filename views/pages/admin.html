@@ -1,0 +1,34 @@
+<h1 class="page-header">Список страниц</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Заголовок</th>
+        <th>Slug</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#entries:i}}
+    <tr>
+        <td>{{i + 1}}</td>
+        <td>{{title}}</td>
+        <td>{{slug}}</td>
+        <td>
+            <a href="/{{slug}}" class="admin-table__action glyphicon glyphicon-eye-open"></a>
+            <a href="/pages/{{_id}}/edit" class="admin-table__action glyphicon-pencil"></a>
+            <a href="/pages/{{_id}}" class="admin-table__action glyphicon-trash" data-action="delete-item"></a>
+        </td>
+    </tr>
+    {{/entries}}
+    {{^entries}}
+    <tr>
+        <td colspan="4">Страниц пока что нет</td>
+    </tr>
+    {{/entries}}
+
+    </tbody>
+</table>
+
+{{{generatePagination(page, pages)}}}

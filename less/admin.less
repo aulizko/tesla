@@ -32,3 +32,33 @@
   font-style: normal;
   color: @input-color-placeholder;
 }
+
+.admin-container {
+  width: 100%;
+
+  .page-header {
+    margin-top: 0;
+  }
+}
+
+@media @desktop {
+  .admin-container {
+    width: 970px;
+  }
+}
+
+.admin-table__action {
+  color: @text-color;
+  text-decoration: none;
+  margin-right: 1em;
+
+  &:last-child {
+    margin-right: none;
+  }
+
+  &:hover,
+  &:visited {
+    color: #000;
+    text-decoration: none;
+  }
+}

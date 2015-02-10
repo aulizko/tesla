@@ -1,4 +1,5 @@
 @body-background: #999999;
+@body-bg: #999999;
 @text-color:      #525252;
 @footer-height: 40px;
 
@@ -22,7 +23,7 @@
 @neon-yellow: #FFFF00;
 @neon-blue: #4D4DFF;
 @neon-red: #FE0001;
-@neon-orange: #FF4105;
+@neon-orange: #f0ad4e;
 @neon-purple: #993CF3;
 
 //** Global textual link color.
@@ -222,6 +223,26 @@
 @caret-width-base:          4px;
 //** Carets increase slightly in size for larger components.
 @caret-width-large:         5px;
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+//** Padding for `<th>`s and `<td>`s.
+@table-cell-padding:            8px;
+//** Padding for cells in `.table-condensed`.
+@table-condensed-cell-padding:  5px;
+
+//** Default background color used for all tables.
+@table-bg:                      transparent;
+//** Background color used for `.table-striped`.
+@table-bg-accent:               #f9f9f9;
+//** Background color used for `.table-hover`.
+@table-bg-hover:                #f5f5f5;
+@table-bg-active:               @table-bg-hover;
+
+//** Border color for table and cell borders.
+@table-border-color:            #ddd;
 
 //== Buttons
 //
