@@ -1,0 +1,23 @@
+{{#if user && authenticated}}
+<div class="admin-menu__wrapper">
+    <div class="admin-menu__container">
+        <div class="admin-menu">
+            <a href="#" class="glyphicon glyphicon-align-justify admin-menu__toggle"></a>
+            <ul class="admin-menu__nav">
+                <li>
+                    <a href="/admin/articles">Новости</a>
+                </li>
+                <li>
+                    <a href="/admin/pages">Страницы</a>
+                </li>
+                <li>
+                    <a href="/admin/menu">Меню</a>
+                </li>
+                <li>
+                    <a href="/admin/users">Пользователи</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{{/if}}

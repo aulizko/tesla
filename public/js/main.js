@@ -1,9 +1,8 @@
 'use strict';
 
 var AdminEditor = require('./editor.js');
+var AdminMenu = require('./admin-menu.js');
 
-// UI stuff
-var logoHover = require('./ui/logo-hover.js');
-
-logoHover.init();
 AdminEditor.initialize();
+
+AdminMenu.initialize();

@@ -2,9 +2,10 @@
     "execMap": {
         "js": "node --harmony"
     },
-    "ignore": ["test/*", "views/*", "upload/*", "public/*", ".git*", "Gruntfile.js", "browser-shims.js", "tmp"],
+    "ignore": ["test/*", "upload/*", "public/*", ".git*", "Gruntfile.js", "browser-shims.js", "tmp", "node_modules", "less"],
     "env": {
         "NODE_ENV": "development",
         "NODE_PATH": "./config:./app/controllers"
-    }
+    },
+    "ext": "js json html"
 }

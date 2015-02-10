@@ -8,6 +8,7 @@ var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
 var bower = require('gulp-bower');
 var debug = require('gulp-debug');
+var nodemon = require('gulp-nodemon');
 
 var LINT_SOURCES = [
     'public/js/**/*.js',
@@ -19,6 +20,28 @@ var LINT_SOURCES = [
     'server.js'
 ];
 
+gulp.task('dev', function () {
+    nodemon({
+        script: 'server.js',
+        ext: 'html js json',
+        ignore: [
+            "test/*",
+            "upload/*",
+            "public/*",
+            ".git*",
+            "Gruntfile.js",
+            "browser-shims.js",
+            "tmp",
+            "node_modules",
+            "less"
+        ]
+    })
+    .on('change', ['lint', 'codeStyle'])
+    .on('restart', function () {
+        console.log('restarted!')
+    });
+});
+
 gulp.task('bower', function (cb) {
     bower('./vendor')
         .pipe(gulp.dest('./vendor/'));
@@ -27,7 +50,7 @@ gulp.task('bower', function (cb) {
 });
 
 gulp.task('styles', function () {
-    return gulp.src('./less/master.less')
+    return gulp.src(['./less/master.less', './less/logged-in-only.less'])
         .pipe(less({
             strictImports: true
         }))
