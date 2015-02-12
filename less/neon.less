@@ -2,11 +2,18 @@
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px @color, 0 0 70px @color, 0 0 80px @color, 0 0 100px @color, 0 0 150px @color;
 }
 
-.neon-radial(@start-color, @end-color) {
+.neon-radial(@start-color, @end-color) when(lightness(@start-color) >= 70%) {
     background: radial-gradient(ellipse at top center, lighten(@start-color, 30%) 0%, @end-color 100%);
     background-color: @end-color;
     background-repeat: no-repeat;
     background-attachment: fixed; 
+}
+
+.neon-radial(@start-color, @end-color) when(lightness(@start-color) < 70%) {
+  background: radial-gradient(ellipse at top center, @start-color 0%, @end-color 100%);
+  background-color: @end-color;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .neon-background {
