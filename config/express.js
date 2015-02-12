@@ -20,6 +20,7 @@ var MongoStore = require('connect-mongo')(session);
 var config = require('config');
 var pkg = require('../package.json');
 var menu = require('middlewares/menu.js');
+var colors = require('middlewares/colors.js');
 
 var env = process.env.NODE_ENV || 'development';
 
@@ -105,6 +106,7 @@ module.exports = function (app, passport) {
     });
 
     app.use(menu);
+    app.use(colors);
 
     // connect flash for flash messages - should be declared after sessions
     app.use(flash());

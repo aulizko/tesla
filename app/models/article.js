@@ -7,6 +7,7 @@
 var mongoose = require('mongoose');
 var Imager = require('imager');
 var config = require('config');
+var colorized = require('../mixins/colorized.js');
 var _ = require('lodash');
 
 var imagerConfig = require(config.root + '/config/imager.js');
@@ -18,7 +19,7 @@ var Schema = mongoose.Schema;
  * Article Schema
  */
 
-var ArticleSchema = new Schema({
+var ArticleSchema = new Schema(_.assign({}, colorized.schema, {
     title: {type: String, default: '', trim: true},
     body: {type: String, default: '', trim: true},
     user: {type: Schema.ObjectId, ref: 'User'},
@@ -31,7 +32,7 @@ var ArticleSchema = new Schema({
         default: false
     },
     createdAt: {type: Date, default: Date.now}
-});
+}));
 
 /**
  * Validations
@@ -56,6 +57,8 @@ ArticleSchema.pre('remove', function (next) {
 
     next();
 });
+
+ArticleSchema.path('color').validate(colorized.validationFunction, colorized.validationMessage);
 
 ArticleSchema.pre('validate', function (next) {
     this.body = sanitizeHtml(this.body, {

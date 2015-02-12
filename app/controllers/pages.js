@@ -157,7 +157,8 @@ exports.update = function (req, res) {
 exports.show = function (req, res) {
     res.render('pages/show', {
         title: req.page.title,
-        page: req.page
+        page: req.page,
+        pageColor: req.page.color
     });
 };
 

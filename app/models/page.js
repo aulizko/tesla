@@ -6,6 +6,8 @@ var config = require('config');
 
 var imagerConfig = require(config.root + '/config/imager.js');
 var sanitizeHtml = require('sanitize-html');
+var colorized = require('../mixins/colorized.js');
+var _ = require('lodash');
 
 var Schema = mongoose.Schema;
 
@@ -24,23 +26,13 @@ var reservedSlugs = [
     'pages'
 ];
 
-var VALID_COLORS = [
-    'yellow',
-    'green',
-    'pink',
-    'blue',
-    'red',
-    'orange',
-    'purple'
-];
-
 var reservedSlugsRegex = new RegExp(reservedSlugs.join('|'), 'ig');
 
 /**
  * Page Schema
  */
 
-var PageSchema = new Schema({
+var PageSchema = new Schema(_.assign({}, colorized.schema, {
     title: {
         type: String,
         default: '',
@@ -61,12 +53,8 @@ var PageSchema = new Schema({
         cdnUri: String,
         files: []
     },
-    color: {
-        type: String,
-        default: ''
-    },
     createdAt: {type: Date, default: Date.now}
-});
+}));
 
 /**
  * Validations
@@ -96,14 +84,7 @@ PageSchema.path('slug').validate(function (slug, fn) {
     }
 }, 'У страницы не может быть slug в виде одного из перечисленных слов ' + reservedSlugs.join(', '));
 
-PageSchema.path('color').validate(function (color, fn) {
-    if (this.isNew || this.isModified('color')) {
-
-        fn(!color || VALID_COLORS.indexOf(color) !== -1);
-    } else {
-        fn(true);
-    }
-}, 'Неправильный цвет');
+PageSchema.path('color').validate(colorized.validationFunction, colorized.validationMessage);
 
 /**
  * Pre-remove hook
