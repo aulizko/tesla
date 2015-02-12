@@ -26,10 +26,6 @@ var ArticleSchema = new Schema({
         cdnUri: String,
         files: []
     },
-    published: {
-        type: Boolean,
-        default: false
-    },
     commentable: {
         type: Boolean,
         default: false

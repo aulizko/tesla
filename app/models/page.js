@@ -61,10 +61,6 @@ var PageSchema = new Schema({
         cdnUri: String,
         files: []
     },
-    published: {
-        type: Boolean,
-        default: false
-    },
     color: {
         type: String,
         default: ''
