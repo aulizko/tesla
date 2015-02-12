@@ -16,6 +16,7 @@
         <td>{{i + 1}}</td>
         <td>{{title}}</td>
         <td>{{user.username}}</td>
+        <td>{{timeAgo(createdAt)}}</td>
         <td class="admin-table__actions-cell">
             <a href="/articles/{{_id}}" class="admin-table__action glyphicon glyphicon-eye-open"></a>
             <a href="/articles/{{_id}}/edit" class="admin-table__action glyphicon glyphicon-pencil"></a>
