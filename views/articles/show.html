@@ -12,16 +12,11 @@
                 <a href="/users/{{user._id}}">
                     {{ user.name || user.username }}
                 </a>
-                {{/if source}}
+                {{/if}}
                 <span class="muted">{{ timeAgo(createdAt) }}</span>
             </div>
 
 
-            {{#if video && video.html}}
-            <div class="article__video-container">
-                {{{video.html}}}
-            </div>
-            {{else}}
             {{#if (image && image.files && image.files.length) }}
             <div class="article__image-container">
                 <picture>
@@ -35,33 +30,18 @@
                 </picture>
             </div>
             {{/if}}
-            {{/if}}
 
             <div class="article__text">{{{body}}}</div>
-
-            {{#if tags || source}}
-            <div class="article__categories">
-                {{#if source}}
-                По материалам <a href="{{ source }}" target="_blank">{{ source }}</a>
-                <br/>
-                {{/if}}
-                Опубликовано в категориях:
-                {{#each getTags(tags)}}
-                <a href="/tags/{{.}}" class="tag">{{ . }}</a>
-                {{/each}}
-            </div>
-            {{/if}}
-
 
         </article>
     </div>
 </div>
 
-{{#if user && authenticated && user._id == article.user._id}}
+{{#if user && authenticated}}
 <form action="/articles/{{ _id }}" method="post" onsubmit="return confirm('Вы уверены?')">
     <br>
     <input type="hidden" name="_csrf" value="{{ csrf_token }}">
-    <a href="/articles/{{ _id + '/edit' }}" title="edit" class="btn btn-default">
+    <a href="/articles/{{ _id }}/edit" title="edit" class="btn btn-default">
         Редактировать
     </a>
     &nbsp;
@@ -69,18 +49,6 @@
     <button class="btn btn-danger" type="submit">Удалить</button>
 </form>
 {{/if}}
-
-<br>
-<h3 class="comment__header">Комментарии</h3>
-
-{{#if article.comments && article.comments.length}}
-{{#each article.comments}}
-{{>commentItem}}
-{{/each}}
-{{else}}
-<p class="comment__empty text-muted">Пока что комментариев нет.</p>
-{{/if}}
-
-{{>commentForm}}
-
 {{/with}}
+<br>
+{{>disqusComments}}

@@ -17,9 +17,9 @@
         <td>{{title}}</td>
         <td>{{user.username}}</td>
         <td class="admin-table__actions-cell">
-            <a href="/{{slug}}" class="admin-table__action glyphicon glyphicon-eye-open"></a>
-            <a href="/pages/{{_id}}/edit" class="admin-table__action glyphicon glyphicon-pencil"></a>
-            <a href="/pages/{{_id}}" class="admin-table__action glyphicon glyphicon-trash" data-action="delete-item" data-csrf="{{csrfToken}}"></a>
+            <a href="/articles/{{_id}}" class="admin-table__action glyphicon glyphicon-eye-open"></a>
+            <a href="/articles/{{_id}}/edit" class="admin-table__action glyphicon glyphicon-pencil"></a>
+            <a href="/articles/{{_id}}" class="admin-table__action glyphicon glyphicon-trash" data-action="delete-item" data-csrf="{{csrfToken}}"></a>
         </td>
     </tr>
     {{/entries}}

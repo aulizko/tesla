@@ -25,11 +25,11 @@
     </div>
 </div>
 
-{{#if user && authenticated && user._id == page.user._id}}
+{{#if user && authenticated}}
 <form action="/pages/{{ _id }}" method="post" onsubmit="return confirm('Вы уверены?')">
     <br>
     <input type="hidden" name="_csrf" value="{{ csrf_token }}">
-    <a href="/pages/{{ _id + '/edit' }}" title="edit" class="btn btn-default">
+    <a href="/pages/{{ _id }}/edit" title="edit" class="btn btn-default">
         Редактировать
     </a>
     &nbsp;
