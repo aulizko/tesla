@@ -12,3 +12,15 @@ exports.requiresLogin = function (req, res, next) {
     }
     res.redirect('/login');
 };
+
+/*
+ *  User authorization routing middleware
+ */
+exports.user = {
+    hasAuthorization: function (req, res, next) {
+        if (req.profile.id !== req.user.id) {
+            return res.redirect('/');
+        }
+        next();
+    }
+};

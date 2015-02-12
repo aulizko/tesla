@@ -13,6 +13,7 @@ var menuItems = require('menu-items');
 module.exports = function (app, passport, sitemap) {
 
     // user routes
+    app.param('userId', users.load);
     app.get('/login', users.login);
     app.get('/signup', users.signup);
     app.get('/logout', users.logout);
@@ -22,11 +23,10 @@ module.exports = function (app, passport, sitemap) {
             failureRedirect: '/login',
             failureFlash: 'Invalid email or password.'
         }), users.session);
-    app.get('/users/:userId', users.show);
+    app.get('/users/:userId/edit', [auth.requiresLogin, auth.user.hasAuthorization], users.edit);
+    app.put('/users/:userId', [auth.requiresLogin, auth.user.hasAuthorization], users.update);
 
     app.get('/sitemap.xml', sitemap);
-
-    app.param('userId', users.load);
 
     // article routes
     app.param('id', articles.load);

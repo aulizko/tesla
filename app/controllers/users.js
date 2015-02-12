@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var utils = require('../../lib/utils');
+var extend = require('util')._extend;
 
 /**
  * Helper function
@@ -113,6 +114,31 @@ exports.signup = function (req, res) {
 exports.logout = function (req, res) {
     req.logout();
     res.redirect('/login');
+};
+
+exports.edit = function (req, res) {
+    return res.render('users/form', {
+        layout: 'admin',
+        title: 'Изменение пароля',
+        profile: req.profile
+    });
+};
+
+exports.update = function (req, res) {
+    var user = req.profile;
+    user = extend(user, req.body);
+    user.save(function (err) {
+        if (!err) {
+            return res.redirect(req.session.returnTo ? req.session.returnTo : '/');
+        }
+
+        return res.render('users/form', {
+            layout: 'admin',
+            title: 'Изменение пароля',
+            profile: req.profile,
+            errors: utils.errors(err.errors || err)
+        });
+    });
 };
 
 /**
