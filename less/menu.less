@@ -4,44 +4,87 @@
 
 
   ul {
-      text-align: center;
+    text-align: center;
 
-      margin: 0;
-      padding: 0;
+    margin: 0;
+    padding: 0;
 
-      list-style-type: none;
+    list-style-type: none;
+
+    .clearfix();
   }
 
   &__item {
     display: inline-block;
+    position: relative;
+
     *display: inline;
     *zoom: 1;
+    margin-right: 2em;
 
-    margin-left: 2em;
-
-    &:first-child {
-      margin-left: 0;
+    &:last-child {
+      margin-right: 0;
     }
+  }
 
-    a {
-      font-size: 1.4em;
-      background-color: @text-color;
-      text-decoration: none;
+  &__item-link {
+    font-size: 1.4em;
+    background-color: @text-color;
+    text-decoration: none;
+    display: block;
 
-      background-clip: text;
+
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+
+    &:hover {
       color: transparent;
-      text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
-
-      &:hover {
-        color: transparent;
-        background-color: darken(@text-color, 15%);
-        text-decoration: underline;
-      }
+      background-color: darken(@text-color, 15%);
+      text-decoration: underline;
     }
   }
 
   &__sub-menu {
     display: none;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    margin: 0;
+    padding: 0;
+
+    opacity: 0;
+  }
+
+  &__sub-menu__item {
+    text-align: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__sub-menu__item-link {
+    display: block;
+    padding: .4em 1.2em;
+
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: none;
+
+    &:hover {
+      transition: text-shadow .3s ease,
+      color .3s ease;
+      text-decoration: none;
+    }
+  }
+}
+
+.main-menu__item:hover {
+  .main-menu__sub-menu {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: all .2s ease;
   }
 }
 
@@ -49,4 +92,80 @@
     .main-menu {
         width: @container-desktop;
     }
+}
+
+
+.menu-shadows(@color, @bg-color) when (lightness(@color) >= 70%) {
+  background-color: @bg-color;
+  box-shadow: inset 0px 5px 5px fade(@color, 50%), 0px 5px 10px #555;
+
+  &__item-link {
+    background-color: @bg-color;
+    color: saturate(@color, 40%);
+
+    &:hover {
+      color: @bg-color;
+      text-shadow: 1px -1px 1px @color, -1px 1px 1px #555;
+    }
+  }
+  
+}
+
+.menu-shadows(@color, @bg-color) when (lightness(@color) < 70%) {
+  background-color: @bg-color;
+  box-shadow: inset 0px 5px 5px fade(lighten(@color, 30%), 50%), 0px 5px 10px #555;
+
+  &__item-link {
+    background-color: @bg-color;
+    color: saturate(lighten(@color, 30%), 40%);
+
+    &:hover {
+      color: @bg-color;
+      text-shadow: 1px -1px 1px lighten(@color, 30%), -1px 1px 1px #555;
+    }
+  }
+}
+
+body {
+  &.yellow {
+    .main-menu__sub-menu {
+      .menu-shadows(@neon-yellow, #D3D393);
+    }
+  }
+
+  &.purple {
+    .main-menu__sub-menu {
+      .menu-shadows(@neon-purple, #BFB2CD);
+    }
+  }
+
+  &.green {
+    .main-menu__sub-menu {
+      .menu-shadows(@neon-green, #AFD096);
+    }
+  }
+
+  &.pink {
+    .main-menu__sub-menu {
+      .menu-shadows(@neon-pink, #CB98CB);
+    }
+  }
+
+  &.blue {
+    .main-menu__sub-menu {
+      .menu-shadows(@neon-blue, #C0C0D0);
+    }
+  }
+
+  &.red {
+    .main-menu__sub-menu {
+      .menu-shadows(@neon-red, #D09696);
+    }
+  }
+
+  &.orange {
+    .main-menu__sub-menu {
+      .menu-shadows(@neon-orange, #D0C0B2);
+    }
+  }
 }

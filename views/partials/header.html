@@ -2,12 +2,12 @@
     <ul>
         {{#menu}}
         <li class="main-menu__item">
-            <a href="{{link}}"><span class="nav-text">{{title}}</span></a>
+            <a href="{{link}}" class="main-menu__item-link">{{title}}</a>
             {{#if children}}
             <ul class="main-menu__sub-menu">
                 {{#children}}
                 <li class="main-menu__sub-menu__item">
-                    <a href="{{link}}"><span class="nav-text">{{title}}</span></a>
+                    <a href="{{link}}" class="main-menu__sub-menu__item-link">{{title}}</a>
                 </li>
                 {{/children}}
             </ul>
