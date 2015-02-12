@@ -30,6 +30,10 @@ var ArticleSchema = new Schema({
         type: Boolean,
         default: false
     },
+    commentable: {
+        type: Boolean,
+        default: false
+    },
     createdAt: {type: Date, default: Date.now}
 });
 

@@ -49,6 +49,10 @@
     <button class="btn btn-danger" type="submit">Удалить</button>
 </form>
 {{/if}}
-{{/with}}
+
+{{#if commentable}}
 <br>
 {{>disqusComments}}
+{{/if}}
+
+{{/with}}
