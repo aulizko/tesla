@@ -59,18 +59,26 @@
   }
 }
 
-.admin-table__action-add-new {
-  float: right;
-  color: @text-color;
-  text-decoration: none;
-  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
-
-  &:hover {
+.admin-table {
+  &__action-add-new {
+    float: right;
+    color: @text-color;
     text-decoration: none;
-    color: #333;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+
+    &:hover {
+      text-decoration: none;
+      color: #333;
+    }
+  }
+
+  &__actions-cell {
+    width: 6em;
+    text-align: right;
+  }
+
+  &__item-cell__children {
+    padding-left: 4em;
   }
 }
 
-td.admin-table__actions-cell {
-  width: 6em;
-}

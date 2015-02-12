@@ -47,7 +47,7 @@ exports.create = function (req, res) {
         }
 
         // manually login the user once successfully signed up
-        req.logIn(user, function (errInner) {
+        return req.logIn(user, function (errInner) {
             /*global next*/
             if (errInner) {
                 return next(errInner);

@@ -24,6 +24,16 @@ var reservedSlugs = [
     'pages'
 ];
 
+var VALID_COLORS = [
+    'yellow',
+    'green',
+    'pink',
+    'blue',
+    'red',
+    'orange',
+    'purple'
+];
+
 var reservedSlugsRegex = new RegExp(reservedSlugs.join('|'), 'ig');
 
 /**
@@ -55,6 +65,10 @@ var PageSchema = new Schema({
         type: Boolean,
         default: false
     },
+    color: {
+        type: String,
+        default: ''
+    },
     createdAt: {type: Date, default: Date.now}
 });
 
@@ -85,6 +99,15 @@ PageSchema.path('slug').validate(function (slug, fn) {
         fn(true);
     }
 }, 'У страницы не может быть slug в виде одного из перечисленных слов ' + reservedSlugs.join(', '));
+
+PageSchema.path('color').validate(function (color, fn) {
+    if (this.isNew || this.isModified('color')) {
+
+        fn(!color || VALID_COLORS.indexOf(color) !== -1);
+    } else {
+        fn(true);
+    }
+}, 'Неправильный цвет');
 
 /**
  * Pre-remove hook

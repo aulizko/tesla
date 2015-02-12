@@ -1,7 +1,4 @@
 'use strict';
-/**
- * Module dependencies.
- */
 
 var mongoose = require('mongoose');
 var Article = mongoose.model('Article');
@@ -11,7 +8,6 @@ var extend = require('util')._extend;
 /**
  * Load
  */
-
 exports.load = function (req, res, next, id) {
     Article.load(id, function (err, article) {
         if (err) {
@@ -66,7 +62,8 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
     res.render('articles/form', {
         title: 'Новая статья',
-        article: new Article({})
+        article: new Article({}),
+        layout: 'admin'
     });
 };
 
@@ -104,7 +101,8 @@ exports.create = function (req, res) {
 exports.edit = function (req, res) {
     res.render('articles/form', {
         title: 'Редактирование ' + req.article.title,
-        article: req.article
+        article: req.article,
+        layout: 'admin'
     });
 };
 
@@ -182,7 +180,7 @@ exports.search = function (req, res) {
             return res.render('500');
         }
 
-        res.render('articles/search', {
+        return res.render('articles/search', {
             articles: articles,
             page: 1,
             pages: 1,

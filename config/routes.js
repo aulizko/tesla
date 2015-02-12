@@ -4,6 +4,7 @@ var users = require('users');
 var articles = require('articles');
 var pages = require('pages');
 var auth = require('./middlewares/authorization');
+var menuItems = require('menu-items');
 
 /**
  * Route middlewares
@@ -47,6 +48,13 @@ module.exports = function (app, passport, sitemap) {
     app.get('/search', articles.search);
     app.get('/page/:page', articles.index);
 
+    app.param('menuItemId', menuItems.load);
+    app.get('/menuItems/new', auth.requiresLogin, menuItems.new);
+    app.post('/menuItems', auth.requiresLogin, menuItems.create);
+    app.get('/admin/menuItems', auth.requiresLogin, menuItems.admin);
+    app.delete('/menuItems/:menuItemId', auth.requiresLogin, menuItems.destroy);
+    app.get('/menuItems/:menuItemId/edit', auth.requiresLogin, menuItems.edit);
+    app.put('/menuItems/:menuItemId', auth.requiresLogin, menuItems.update);
     // home route
     app.get('/', articles.index);
 

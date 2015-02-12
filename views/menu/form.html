@@ -1,0 +1,79 @@
+{{#if menuItem.isNew}}
+<h1 class="page-header">Добавление пункта меню</h1>
+{{else}}
+<h1 class="page-header">Редактирование пункта меню "{{menuItem.title}}"</h1>
+{{/if}}
+
+{{#if errors && errors.length}}
+<div class="alert alert-danger">
+    <p><strong>При заполнении формы были допущены следующие ошибки:</strong></p>
+    <ol>
+        {{#each errors}}
+        <li>{{.}}</li>
+        {{/each}}
+    </ol>
+</div>
+{{/if}}
+
+{{#with menuItem}}
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" action="{{ isNew ? '/menuItems' : '/menuItems/' + _id }}" role="form" class="form-horizontal" id="menu-item-form">
+
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+
+            {{#unless isNew}}
+            <input type="hidden" name="_method" value="PUT">
+            {{/unless}}
+
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">Название</label>
+
+                <div class="col-sm-8">
+                    <input type="text" name="title" value="{{ title }}" placeholder="Введите название"
+                           class="form-control" id="title">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="link" class="col-sm-2 control-label">Ссылка</label>
+
+                <div class="col-sm-8">
+                    <input type="text" name="link" value="{{ link }}" placeholder="Введите ссылку"
+                           class="form-control" id="link">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="order" class="col-sm-2 control-label">Порядковый номер</label>
+
+                <div class="col-sm-8">
+                    <input type="number" name="order" value="{{ order }}" placeholder="Введите порядковый номер"
+                           class="form-control" id="order">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="parent" class="col-sm-2 control-label">Родитель</label>
+
+                <div class="col-sm-8">
+                    <select name="parent" value="{{ parent }}" id="parent" class="form-control">
+                        <option value="">Без родителя</option>
+                        {{#rootMenuItems}}
+                        <option value="{{_id}}">{{title}}</option>
+                        {{/rootMenuItems}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button class="btn btn-primary" type="submit">Сохранить</button>
+                    &nbsp;
+                    <a href="/" class="btn btn-link">Отмена</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{{/with}}

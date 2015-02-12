@@ -30,10 +30,6 @@ var ArticleSchema = new Schema({
         type: Boolean,
         default: false
     },
-    source: {
-        type: String,
-        default: ''
-    },
     createdAt: {type: Date, default: Date.now}
 });
 

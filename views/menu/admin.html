@@ -1,0 +1,48 @@
+<h1 class="page-header">Список пунктов меню <a href="/menuItems/new" class="admin-table__action-add-new glyphicon glyphicon-plus"></a></h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Название</th>
+        <th>Ссылка</th>
+        <th>Порядковый номер</th>
+        <th class="admin-table__actions-cell"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#entries:i}}
+    <tr>
+        <td>{{i + 1}}</td>
+        <td>{{title}}</td>
+        <td>{{link}}</td>
+        <td>{{order}}</td>
+        <td class="admin-table__actions-cell">
+            <a href="/menuItems/{{_id}}/edit" class="admin-table__action glyphicon glyphicon-pencil"></a>
+            <a href="/menuItems/{{_id}}" class="admin-table__action glyphicon glyphicon-trash" data-action="delete-item" data-csrf="{{csrfToken}}"></a>
+        </td>
+    </tr>
+        {{#children:j}}
+            <tr>
+                <td class="admin-table__item-cell__children">{{i + 1}}:{{j + 1}}</td>
+                <td>{{title}}</td>
+                <td>{{link}}</td>
+                <td>{{order}}</td>
+                <td class="admin-table__actions-cell">
+                    <a href="/menuItems/{{_id}}/edit" class="admin-table__action glyphicon glyphicon-pencil"></a>
+                    <a href="/menuItems/{{_id}}" class="admin-table__action glyphicon glyphicon-trash" data-action="delete-item" data-csrf="{{csrfToken}}"></a>
+                </td>
+            </tr>
+        {{/children}}
+
+    {{/entries}}
+    {{^entries}}
+    <tr>
+        <td colspan="4">Пунктов меню пока что нет</td>
+    </tr>
+    {{/entries}}
+
+    </tbody>
+</table>
+
+{{{generatePagination(page, pages)}}}
