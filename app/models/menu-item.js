@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var _ = require('lodash');
 
 function ignoreEmpty(val) {
     if (val === '') {
@@ -56,6 +57,24 @@ MenuItemSchema.path('link').validate(function (link, fn) {
     }
 }, 'Пункт меню, ссылающийся на то же место, уже существует');
 
+function LoadWaiter(count, cb) {
+    this.count = count;
+    this.data = [];
+    this.cb = cb;
+}
+
+LoadWaiter.prototype.complete = function (menuItemWithChildren) {
+    this.data.push(menuItemWithChildren);
+    this.count -= 1;
+    this.checkIfCallbackShouldBeInvoked();
+};
+
+LoadWaiter.prototype.checkIfCallbackShouldBeInvoked = function () {
+    if (this.count === 0) {
+        this.cb(null, _.sortBy(this.data, 'order'));
+    }
+};
+
 MenuItemSchema.statics = {
     loadById: function (id, cb) {
         this.findOne({_id: id})
@@ -76,6 +95,33 @@ MenuItemSchema.statics = {
             .limit(options.perPage)
             .skip(options.perPage * options.page)
             .exec(cb);
+    },
+
+    loadTree: function (cb) {
+        var that = this;
+        this.find({parent: null})
+            .sort({order: 1})
+            .exec(function (loadParentMenuItemError, rootMenuItems) {
+                if (loadParentMenuItemError) {
+                    return cb(loadParentMenuItemError);
+                }
+
+                var waiter = new LoadWaiter(rootMenuItems.length, cb);
+
+                _.each(rootMenuItems, function (rootMenuItem) {
+                    that.find({parent: rootMenuItem._id})
+                        .sort({order: 1})
+                        .exec(function (childrenMenuItemLoadError, children) {
+                            if (childrenMenuItemLoadError) {
+                                return cb(childrenMenuItemLoadError);
+                            }
+
+                            rootMenuItem.children = children;
+
+                            return waiter.complete(rootMenuItem);
+                        });
+                });
+            });
     }
 };
 

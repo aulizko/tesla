@@ -19,6 +19,7 @@ var flash = require('connect-flash');
 var MongoStore = require('connect-mongo')(session);
 var config = require('config');
 var pkg = require('../package.json');
+var menu = require('middlewares/menu.js');
 
 var env = process.env.NODE_ENV || 'development';
 
@@ -102,6 +103,8 @@ module.exports = function (app, passport) {
         res.locals.env = env;
         next();
     });
+
+    app.use(menu);
 
     // connect flash for flash messages - should be declared after sessions
     app.use(flash());

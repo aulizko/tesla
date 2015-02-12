@@ -7,13 +7,6 @@ var auth = require('./middlewares/authorization');
 var menuItems = require('menu-items');
 
 /**
- * Route middlewares
- */
-
-var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
-var pageAuth = [auth.requiresLogin, auth.page.hasAuthorization];
-
-/**
  * Expose routes
  */
 
@@ -42,9 +35,9 @@ module.exports = function (app, passport, sitemap) {
     app.post('/articles', auth.requiresLogin, articles.create);
     app.get('/articles/page/:page', articles.index);
     app.get('/articles/:id', articles.show);
-    app.get('/articles/:id/edit', articleAuth, articles.edit);
-    app.put('/articles/:id', articleAuth, articles.update);
-    app.delete('/articles/:id', articleAuth, articles.destroy);
+    app.get('/articles/:id/edit', auth.requiresLogin, articles.edit);
+    app.put('/articles/:id', auth.requiresLogin, articles.update);
+    app.delete('/articles/:id', auth.requiresLogin, articles.destroy);
     app.get('/search', articles.search);
     app.get('/page/:page', articles.index);
 
@@ -64,9 +57,9 @@ module.exports = function (app, passport, sitemap) {
     app.get('/admin/pages', auth.requiresLogin, pages.admin);
     app.get('/pages/new', auth.requiresLogin, pages.new);
     app.post('/pages', auth.requiresLogin, pages.create);
-    app.get('/pages/:pageId/edit', pageAuth, pages.edit);
-    app.put('/pages/:pageId', pageAuth, pages.update);
-    app.delete('/pages/:pageId', pageAuth, pages.destroy);
+    app.get('/pages/:pageId/edit', auth.requiresLogin, pages.edit);
+    app.put('/pages/:pageId', auth.requiresLogin, pages.update);
+    app.delete('/pages/:pageId', auth.requiresLogin, pages.destroy);
 
     // Очень уж глобальная штука, может отловить все, поэтому отправляется в самый низ конфига
     app.get('/:slug', pages.show);
@@ -83,7 +76,7 @@ module.exports = function (app, passport, sitemap) {
         }
         console.error(err.stack);
         // error page
-        res.status(500).render('500', {error: err.stack});
+        return res.status(500).render('500', {error: err.stack});
     });
 
     // assume 404 since no middleware responded
