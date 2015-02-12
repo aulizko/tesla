@@ -1,0 +1,12 @@
+/* TEAM */
+	Jack of all trades: Alexander Ulizko
+	Contact: alexander@ulizko.com
+    Site: http://ulizko.com
+	Location: Cherepovets, Vologda region, Russia
+
+
+/* SITE */
+	Last update: 2014/02/13
+	Language: Russian
+	Doctype: HTML5
+	IDE: TextMate, WebStorm
