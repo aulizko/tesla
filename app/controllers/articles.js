@@ -55,6 +55,35 @@ exports.index = function (req, res) {
     });
 };
 
+exports.admin = function (req, res) {
+    var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
+    var perPage = 30;
+    var options = {
+        perPage: perPage,
+        page: page
+    };
+
+    Article.list(options, function (err, articles) {
+        if (err) {
+            return res.render('500');
+        }
+
+        Article.count().exec(function (errInner, count) {
+            if (errInner) {
+                return res.render('500');
+            }
+
+            res.render('articles/admin', {
+                entries: articles,
+                page: page + 1,
+                pages: Math.ceil(count / perPage),
+                title: 'Список новостей',
+                layout: 'admin'
+            });
+        });
+    });
+};
+
 /**
  * New article
  */

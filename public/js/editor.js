@@ -8,7 +8,7 @@ module.exports = {
         var isEditorAndTextAreaSynchronized = false;
         var $editorEl = $('#desc');
         var $textArea = $('#desc_content');
-        var $form = $editorEl.parent('form');
+        var $form = $editorEl.closest('form');
 
         var editor = new MediumEditor('#desc', {
             anchorInputPlaceholder: 'Вставьте ссылку',

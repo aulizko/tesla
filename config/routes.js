@@ -39,7 +39,8 @@ module.exports = function (app, passport, sitemap) {
     app.put('/articles/:id', auth.requiresLogin, articles.update);
     app.delete('/articles/:id', auth.requiresLogin, articles.destroy);
     app.get('/search', articles.search);
-    app.get('/page/:page', articles.index);
+    app.get('/articles/page/:page', articles.index);
+    app.get('/admin/articles', auth.requiresLogin, articles.admin);
 
     app.param('menuItemId', menuItems.load);
     app.get('/menuItems/new', auth.requiresLogin, menuItems.new);

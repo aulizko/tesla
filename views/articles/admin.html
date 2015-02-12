@@ -1,2 +1,35 @@
-<h1 class="page-header">Список статей</h1>
+<h1 class="page-header">Список новостей <a href="/articles/new" class="admin-table__action-add-new glyphicon glyphicon-plus"></a></h1>
 
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Заголовок</th>
+        <th>Автор</th>
+        <th>Дата создания</th>
+        <th class="admin-table__actions-cell"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#entries:i}}
+    <tr>
+        <td>{{i + 1}}</td>
+        <td>{{title}}</td>
+        <td>{{user.username}}</td>
+        <td class="admin-table__actions-cell">
+            <a href="/{{slug}}" class="admin-table__action glyphicon glyphicon-eye-open"></a>
+            <a href="/pages/{{_id}}/edit" class="admin-table__action glyphicon glyphicon-pencil"></a>
+            <a href="/pages/{{_id}}" class="admin-table__action glyphicon glyphicon-trash" data-action="delete-item" data-csrf="{{csrfToken}}"></a>
+        </td>
+    </tr>
+    {{/entries}}
+    {{^entries}}
+    <tr>
+        <td colspan="4">Новостей пока что нет</td>
+    </tr>
+    {{/entries}}
+
+    </tbody>
+</table>
+
+{{{generatePagination(page, pages)}}}
