@@ -67,8 +67,7 @@
     "medium-editor": "./vendor/medium-editor/dist/js/medium-editor.js",
     "lodash": "./node_modules/lodash/dist/lodash.compat.js",
     "jquery": "./vendor/jquery/dist/jquery.js",
-    "ractive": "./node_modules/ractive/ractive-legacy.runtime.js",
-      "medium-editor-custom-html": "./vendor/medium-editor-custom-html/src/custom-html.js"
+    "ractive": "./node_modules/ractive/ractive-legacy.runtime.js"
   },
   "browserify-shim": "./browser-shims.js",
   "browserify": {

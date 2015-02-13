@@ -2,7 +2,6 @@
 
 var $ = require('jquery');
 var MediumEditor = require('medium-editor');
-var CustomHtml = require('medium-editor-custom-html');
 
 module.exports = {
     initialize: function () {
@@ -23,15 +22,8 @@ module.exports = {
                 'header2',
                 'unorderedlist',
                 'orderedlist',
-                'quote',
-                'customHtml'
-            ],
-            extensions: {
-                customHtml: new CustomHtml({
-                    buttonText: '<hr>',
-                    htmlToInsert: '<hr class="someclass">'
-                })
-            }
+                'quote'
+            ]
         });
 
         $form.on('submit', function (e) {
