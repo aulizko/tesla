@@ -8,6 +8,8 @@ var config = require('config');
 var RactiveViewEngine = require('../lib/RactiveViewEngine');
 var _ = require('lodash');
 
+var colorized = require('../app/mixins/colorized.js');
+
 module.exports = function (app) {
     var ractiveViewEngine = new RactiveViewEngine({
         defaultLayout: 'layout-default',
@@ -63,17 +65,8 @@ module.exports = function (app) {
                 if (colorName) {
                     return colorName;
                 } else {
-                    var colorsList = [
-                        'green',
-                        'pink',
-                        'yellow',
-                        'blue',
-                        'red',
-                        'orange',
-                        'purple'
-                    ];
 
-                    return _.sample(colorsList);
+                    return _.sample(colorized.VALID_COLORS);
                 }
             }
         }

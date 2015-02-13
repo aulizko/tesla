@@ -162,6 +162,26 @@ exports.show = function (req, res) {
     });
 };
 
+exports.mainPage = function (req, res, next) {
+    Page.loadBySlug('index', function (err, page) {
+        if (err) {
+            return next(err);
+        }
+
+        if (!page) {
+            return next(new Error('Запрашиваемая страница не найдена'));
+        }
+
+        req.page = page;
+        res.render('pages/show', {
+            title: req.page.title,
+            page: req.page,
+            pageColor: req.page.color
+        });
+    });
+
+};
+
 /**
  * Delete an article
  */

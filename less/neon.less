@@ -10,7 +10,7 @@
 }
 
 .neon-radial(@start-color, @end-color) when(lightness(@start-color) < 70%) {
-  background: radial-gradient(ellipse at top center, @start-color 0%, @end-color 100%);
+  background: radial-gradient(ellipse at top center, lighten(@start-color, 20%) 0%, @end-color 100%);
   background-color: @end-color;
   background-repeat: no-repeat;
   background-attachment: fixed;

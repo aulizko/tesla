@@ -50,7 +50,7 @@ module.exports = function (app, passport, sitemap) {
     app.get('/menuItems/:menuItemId/edit', auth.requiresLogin, menuItems.edit);
     app.put('/menuItems/:menuItemId', auth.requiresLogin, menuItems.update);
     // home route
-    app.get('/', articles.index);
+    app.get('/', pages.mainPage);
 
     // page routes
     app.param('slug', pages.loadBySlug);
