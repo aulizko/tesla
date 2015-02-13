@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var config = require('config');
 var path = require('path');
 var app = express();
-var port = process.env.PORT || 3000;
+var socketName = process.env.SOCKET || '/tmp/tc-tesla.com.sock';
 
 // Connect to mongodb
 var connect = function () {
@@ -48,7 +48,7 @@ var sitemap = require('./config/sitemap')(app, config);
 // Bootstrap routes
 require('./config/routes')(app, passport, sitemap);
 
-app.listen(port);
-console.log('Express app started on port ' + port);
+app.listen(socketName);
+console.log('Express app started on socket ' + socketName);
 
 module.exports = app;
