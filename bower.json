@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "medium-editor": "~1.9.8",
-    "jquery": "1.x"
+    "jquery": "1.x",
+    "medium-editor-custom-html": "git@github.com:jillix/medium-editor-custom-html.git"
   }
 }

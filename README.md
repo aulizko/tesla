@@ -78,7 +78,7 @@ npm i -g forever
 Запускаем проект на порту 61337:
 
 ```
-NODE_ENV=production NODE_PATH=./config:./app/controllers PORT=61337 MONGO_URL=mongodb://localhost/tesla SITE_TITLE="Tesla" SITE_DOMAIN=tc-tesla.com forever start -l /var/log/tesla/forever.log -a -o /var/log/tesla/access.log -e /var/log/tesla/error.log -c 'node --harmony' server.js
+NODE_ENV=production NODE_PATH=./config:./app/controllers PORT=61337 MONGO_URL=mongodb://localhost/tesla SITE_TITLE="Tesla, группа товарищей" SITE_DOMAIN=tc-tesla.com forever start -l /var/log/tesla/forever.log -a -o /var/log/tesla/access.log -e /var/log/tesla/error.log -c 'node --harmony' server.js
 ```
 
 Делаем конфигурацию для nginx:
