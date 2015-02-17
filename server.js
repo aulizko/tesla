@@ -48,7 +48,20 @@ var sitemap = require('./config/sitemap')(app, config);
 // Bootstrap routes
 require('./config/routes')(app, passport, sitemap);
 
-app.listen(socketName);
+var httpServer = app.listen(socketName);
 console.log('Express app started on socket ' + socketName);
+/*eslint-disable */
+process.on('SIGTERM', function () {
+    console.log('Received kill signal (SIGTERM), shutting down gracefully.');
+    httpServer.close(function () {
+        console.log('Closed out remaining connections.');
+        process.exit();
+    });
 
+    setTimeout(function () {
+        console.error('Could not close connections in time, forcefully shutting down');
+        process.exit(1);
+    }, 30 * 1000);
+});
+/*eslint-enable */
 module.exports = app;

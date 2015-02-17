@@ -37,8 +37,10 @@ module.exports = function (app, passport) {
         threshold: 512
     }));
 
-    // Static files middleware
-    app.use(express.static(config.root + '/public'));
+    if (env === 'development') {
+        // Static files middleware
+        app.use(express.static(config.root + '/public'));
+    }
 
     // Use winston on production
     var log;
