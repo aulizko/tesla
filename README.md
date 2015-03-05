@@ -13,7 +13,7 @@ Many thanks to [Davi Ferreira](https://github.com/daviferreira) for [Medium edit
 
 Special thanks for [Josip Kelava](http://josipkelava.com/) for awesome [Metropolis 1920](http://incredibletypes.com/metropolis-1920/) font.
 
-## Runinin in dev mode
+## Running in dev mode
 
 Make sure you have mongodb (2.6 or higher) installed.
 
