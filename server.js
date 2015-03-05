@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var config = require('config');
 var path = require('path');
 var app = express();
-var socketName = process.env.SOCKET || '/tmp/tc-tesla.com.sock';
+var socketName = process.env.SOCKET || 3000; // use 3000 port for development
 
 // Connect to mongodb
 var connect = function () {

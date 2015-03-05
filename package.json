@@ -11,8 +11,8 @@
     "node": "0.11.13"
   },
   "scripts": {
-    "start": "./node_modules/.bin/nodemon server.js",
-    "test": "NODE_PATH=./config:./app/controllers NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --timeout 10000 test/test-*.js"
+    "start": "nodemon server.js",
+    "test": "NODE_PATH=./config:./app/controllers NODE_ENV=test mocha --reporter spec --timeout 10000 test/test-*.js"
   },
   "dependencies": {
     "URIjs": "^1.14.1",
