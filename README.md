@@ -3,6 +3,8 @@
 Server-side working on top [Express.js](http://expressjs.com), with [Mongoose.js](http://mongoosejs.com) as ORM and
 [Ractive.js](http://www.ractivejs.org) as view engine.
 
+Server-side built on top of [Node Express Mongoose](https://github.com/madhums/node-express-mongoose) boilerplate.
+
 Front-end is built with Less.js, Browserify and Gulp.
 
 Some (huge) amount of CSS-code borrowed from [Bootstrap](http://getbootstrap.com).
