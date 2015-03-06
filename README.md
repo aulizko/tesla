@@ -6,9 +6,9 @@ And, of course, a random color for each hit on the page.
 
 Check the [demo](http://tc-tesla.com) or see screenshotes below.
 
-![Yellow variant](//habrastorage.org/files/3d3/dc0/cc9/3d3dc0cc9687492892effa7cd064821f.png)
-![Purple variant](//habrastorage.org/files/aed/bf5/e95/aedbf5e950e8491b8da43dadb087a0df.png)
-![Green variant](//habrastorage.org/files/a69/8d0/803/a698d0803487427193bba2cfd9f15d0a.png)
+![Yellow variant](https://habrastorage.org/files/3d3/dc0/cc9/3d3dc0cc9687492892effa7cd064821f.png)
+![Purple variant](https://habrastorage.org/files/aed/bf5/e95/aedbf5e950e8491b8da43dadb087a0df.png)
+![Green variant](https://habrastorage.org/files/a69/8d0/803/a698d0803487427193bba2cfd9f15d0a.png)
 
 ## Thanks
 
